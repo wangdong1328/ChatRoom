@@ -30,3 +30,5 @@ bool RegisterDialog::eventFilter(QObject* watched, QEvent* event)
 
     return BaseLoginDialog::eventFilter(watched, event);
 }
+
+void RegisterDialog::OnRegisterButtonClick() {}

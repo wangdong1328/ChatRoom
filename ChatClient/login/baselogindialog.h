@@ -35,14 +35,10 @@ public:
 protected:
     virtual void paintEvent(QPaintEvent* event) override;
 
-private:
-    /**
-     * @brief 初始化信号槽连接
-     */
-    void InitSignalSlot();
-
 public slots:
+    // 显示窗口
     void OnShowSlot() { show(); }
+    // 隐藏窗口
     void OnHideSlot() { hide(); }
 
 signals:

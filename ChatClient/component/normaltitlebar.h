@@ -27,18 +27,21 @@ class NormalTitleBar : public QWidget
 {
     Q_OBJECT
 public:
-    explicit NormalTitleBar(const QString& strTitleText, QWidget* parent = nullptr);
-
-signals:
-    void CloseWindowSignal();
+    explicit NormalTitleBar(QWidget* parent = nullptr, bool bIsDialog = false);
 
     // QObject interface
 public:
     virtual bool eventFilter(QObject* watched, QEvent* event) override;
 
 private:
-    // 标题
-    QLabel* m_pTitleLabel { nullptr };
     // 关闭按钮
-    QLabel* m_pCloseLabel { nullptr };
+    QLabel* m_pCloseWindowLabel { nullptr };
+    // 最小按钮
+    QLabel* m_pMinWindowLabel { nullptr };
+    // 最大按钮
+    QLabel* m_pMaxWinodowLabel { nullptr };
+    // 父窗口
+    QWidget* m_pParentWidget { nullptr };
+    // 是否为对话窗
+    bool m_bIsDialog { false };
 };

@@ -34,6 +34,7 @@ aux_source_directory(${PROJECT_SOURCE_DIR}/framelesswindow FRAMELESS_SOURCE_FILE
 
 set(PROJECT_SOURCES
         main.cpp
+        graphicmanager.h graphicmanager.cpp
         ${CHAT_HEADER_FILES} ${CHAT_SOURCE_FILES}
         ${COMPONENT_HEADER_FILES} ${COMPONENT_SOURCE_FILES}
         ${LOGIN_HEADER_FILES} ${LOGIN_SOURCE_FILES}
@@ -45,7 +46,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         res.qrc
-        graphicmanager.h graphicmanager.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET ChatClient APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

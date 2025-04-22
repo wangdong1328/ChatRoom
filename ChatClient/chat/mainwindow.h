@@ -19,9 +19,14 @@
  */
 #pragma once
 
-#include <QMainWindow>
+#include "applicationfeaturebar.h"
+#include "applicationtitlebar.h"
+#include "chatpage.h"
+#include "framelesswindow.h"
 
-class MainWindow : public QMainWindow
+#include <QStackedLayout>
+
+class MainWindow : public FramelessWindow
 {
     Q_OBJECT
 
@@ -37,4 +42,14 @@ protected:
      * @param event
      */
     virtual void paintEvent(QPaintEvent* event) override;
+
+private:
+    // 标题栏
+    ApplicationTitleBar* m_pApplicationTitleBar { nullptr };
+    // 应用菜单栏
+    ApplicationFeatureBar* m_pApplicationFeatureBar { nullptr };
+    // 栈布局
+    QStackedLayout* m_pStackedLayout { nullptr };
+    // 聊天页面
+    ChatPage* m_pChatPage { nullptr };
 };

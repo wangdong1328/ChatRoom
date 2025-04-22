@@ -10,10 +10,10 @@ BaseLoginDialog::BaseLoginDialog(QWidget* parent) : FramelessWindowForDialog(par
 
     // 主垂直布局
     m_pMainVBoxLayout = new QVBoxLayout(this);
-    m_pMainVBoxLayout->setContentsMargins(11, 0, 11, 11);
+    m_pMainVBoxLayout->setContentsMargins(9, 0, 9, 0);
     this->setLayout(m_pMainVBoxLayout);
 
-    m_pNormalTitleBar = new NormalTitleBar("", this);
+    m_pNormalTitleBar = new NormalTitleBar(this, true);
     this->setTitleBar(m_pNormalTitleBar);
 
     // 用户图像
@@ -59,8 +59,6 @@ BaseLoginDialog::BaseLoginDialog(QWidget* parent) : FramelessWindowForDialog(par
     m_pMainVBoxLayout->addSpacing(20);
     m_pMainVBoxLayout->addLayout(m_pContentVBoxLayout);
     m_pMainVBoxLayout->addStretch();
-
-    InitSignalSlot();
 }
 
 void BaseLoginDialog::paintEvent(QPaintEvent* event)
@@ -75,11 +73,4 @@ void BaseLoginDialog::paintEvent(QPaintEvent* event)
     painter.setBrush(gradient);
     painter.drawRect(this->rect());
     QWidget::paintEvent(event);
-}
-
-void BaseLoginDialog::InitSignalSlot()
-{
-    connect(m_pNormalTitleBar, &NormalTitleBar::CloseWindowSignal, this, [&]() {
-        this->close();
-    });
 }

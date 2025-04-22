@@ -20,6 +20,7 @@
 #pragma once
 #include <QObject>
 #include "logindialog.h"
+#include "mainwindow.h"
 #include "registerdialog.h"
 
 class GraphicManager : public QObject
@@ -54,4 +55,6 @@ private:
     LoginDialog* m_pLoginDialog { nullptr };
     // 注册对话窗
     RegisterDialog* m_pRegisterDialog { nullptr };
+    // 聊天主页面
+    MainWindow* m_pMainWindow { nullptr };
 };

@@ -24,3 +24,5 @@ bool LoginDialog::eventFilter(QObject* watched, QEvent* event)
 
     return FramelessWindowForDialog::eventFilter(watched, event);
 }
+
+void LoginDialog::OnLoginButtonClick() {}

@@ -31,6 +31,9 @@ public:
 public:
     virtual bool eventFilter(QObject* watched, QEvent* event) override;
 
+private:
+    void OnRegisterButtonClick();
+
 signals:
     void LoginClickSignal();
 

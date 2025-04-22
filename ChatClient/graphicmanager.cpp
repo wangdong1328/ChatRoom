@@ -10,11 +10,11 @@ void GraphicManager::Init()
 {
     m_pLoginDialog = new LoginDialog();
     m_pRegisterDialog = new RegisterDialog();
+    m_pMainWindow = new MainWindow();
 
     InitSignalSlot();
 
-    // 显示登录界面
-    m_pLoginDialog->OnShowSlot();
+    m_pMainWindow->show();
 }
 
 void GraphicManager::InitSignalSlot()
