@@ -49,5 +49,15 @@
         <file>res/emoji/a-bizuigangabiaoqingxiaolian.png</file>
         <file>res/emoji/a-gangaliuhanbiaoqingxiaolian.png</file>
         <file>res/ico/MajesticonsEyeOn.png</file>
+        <file>res/ico/userhead.png</file>
+        <file>res/ico/chat.png</file>
+        <file>res/ico/self_unselect.png</file>
+        <file>res/ico/self_select.png</file>
+        <file>res/ico/self_unselect1.png</file>
+        <file>res/ico/account_select.png</file>
+        <file>res/ico/account_unselect.png</file>
+        <file>res/ico/clear_select.png</file>
+        <file>res/ico/clear_unselect.png</file>
+        <file>res/ico/file.png</file>
     </qresource>
 </RCC>

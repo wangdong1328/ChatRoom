@@ -6,8 +6,11 @@
 MainWindow::MainWindow(QWidget* parent) : FramelessWindow(parent)
 {
     QVBoxLayout* pMainLayout = new QVBoxLayout(this);
-    pMainLayout->setContentsMargins(9, 0, 9, 0);
+    pMainLayout->setContentsMargins(9, 0, 0, 0);
     this->setLayout(pMainLayout);
+
+    this->setAttribute(Qt::WA_TranslucentBackground);   // 设置窗口背景透明
+    this->setWindowFlags(Qt::FramelessWindowHint);
 
     this->setMinimumSize(1050, 750);
 
@@ -16,16 +19,25 @@ MainWindow::MainWindow(QWidget* parent) : FramelessWindow(parent)
 
     QHBoxLayout* pContentHBoxLayout = new QHBoxLayout;
     this->m_pApplicationFeatureBar = new ApplicationFeatureBar(this);
+
     this->m_pStackedLayout = new QStackedLayout;
 
     this->m_pChatPage = new ChatPage(this);
     this->m_pStackedLayout->addWidget(m_pChatPage);
+
+    this->m_pFriendPage = new FriendPage(this);
+    this->m_pStackedLayout->addWidget(m_pFriendPage);
+
+    this->m_pAccountPage = new AccountPage(this);
+    this->m_pStackedLayout->addWidget(m_pAccountPage);
 
     pContentHBoxLayout->addWidget(m_pApplicationFeatureBar);
     pContentHBoxLayout->addLayout(m_pStackedLayout);
 
     pMainLayout->addWidget(this->m_pApplicationTitleBar);
     pMainLayout->addLayout(pContentHBoxLayout);
+
+    InitSignalSlot();
 }
 
 MainWindow::~MainWindow() {}
@@ -36,7 +48,13 @@ void MainWindow::paintEvent(QPaintEvent* event)
     painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(Qt::NoPen);
     painter.setBrush(Qt::white);
-    painter.drawRoundedRect(this->rect(), 8.5f, 8.5f);
+    painter.drawRoundedRect(this->rect(), 8, 8);
 
     FramelessWindow::paintEvent(event);
+}
+
+void MainWindow::InitSignalSlot()
+{
+    connect(this->m_pApplicationFeatureBar, &ApplicationFeatureBar::ItemChangedSignal, this->m_pStackedLayout,
+            &QStackedLayout::setCurrentIndex);
 }

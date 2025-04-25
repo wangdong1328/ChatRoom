@@ -19,10 +19,12 @@
  */
 #pragma once
 
+#include "accountpage.h"
 #include "applicationfeaturebar.h"
 #include "applicationtitlebar.h"
 #include "chatpage.h"
 #include "framelesswindow.h"
+#include "friendpage.h"
 
 #include <QStackedLayout>
 
@@ -44,6 +46,9 @@ protected:
     virtual void paintEvent(QPaintEvent* event) override;
 
 private:
+    void InitSignalSlot();
+
+private:
     // 标题栏
     ApplicationTitleBar* m_pApplicationTitleBar { nullptr };
     // 应用菜单栏
@@ -52,4 +57,8 @@ private:
     QStackedLayout* m_pStackedLayout { nullptr };
     // 聊天页面
     ChatPage* m_pChatPage { nullptr };
+    // 好友页面
+    FriendPage* m_pFriendPage { nullptr };
+    // 账户页面
+    AccountPage* m_pAccountPage { nullptr };
 };

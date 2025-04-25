@@ -5,24 +5,23 @@
 ApplicationTitleBar::ApplicationTitleBar(QWidget* parent) : QWidget { parent }
 {
     QHBoxLayout* pMainLayout = new QHBoxLayout(this);
-    pMainLayout->setContentsMargins(0, 0, 0, 0);
+    pMainLayout->setContentsMargins(16, 0, 9, 0);
     this->setLayout(pMainLayout);
 
     // 窗口图标设置
     this->m_pIconLabel = new QLabel(this);
     this->m_pIconLabel->setFixedSize(25, 25);
     this->m_pIconLabel->setScaledContents(true);
-    QPixmap pixmap(":/res/ico/TablerBrandUnity.png");
+    QPixmap pixmap(":/res/ico/chat.png");
     pixmap = pixmap.scaled(QSize(this->m_pIconLabel->width(), this->m_pIconLabel->height()),
                            Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
     this->m_pIconLabel->setPixmap(pixmap);
 
     // 窗口标题
     QFont font;
-    font.setBold(true);
-    font.setPixelSize(15);
+    font.setPixelSize(16);
     QPalette pale;
-    pale.setColor(QPalette::WindowText, QColor(30, 110, 254));
+    pale.setColor(QPalette::WindowText, Qt::black);
     this->m_pTitleLabel = new QLabel(this);
     this->m_pTitleLabel->setText("聊天客户端");
     this->m_pTitleLabel->setAlignment(Qt::AlignCenter);
@@ -38,11 +37,13 @@ ApplicationTitleBar::ApplicationTitleBar(QWidget* parent) : QWidget { parent }
     pixmap.load(":/res/ico/RiSearchLine.png");
     this->m_pSearchLabel->setPixmap(pixmap);
     this->m_pSearchLabel->installEventFilter(this);
+    this->m_pSearchLabel->setToolTip(QString("搜索"));
 
     // 通知
     pixmap.load(":/res/ico/RiNotification3Line.png");
     this->m_pIconWithRedPoint = new IconWithRedPoint(QSize(28, 28), pixmap, this);
     this->m_pIconWithRedPoint->SetUnRead(true);
+    this->m_pIconWithRedPoint->setToolTip(QString("通知"));
 
     // 下拉框
     this->m_pPullDownListLabel = new QLabel(this);
@@ -52,6 +53,7 @@ ApplicationTitleBar::ApplicationTitleBar(QWidget* parent) : QWidget { parent }
     pixmap.load(":/res/ico/IconamoonArrowDown2Bold.png");
     this->m_pPullDownListLabel->setPixmap(pixmap);
     this->m_pPullDownListLabel->installEventFilter(this);
+    this->m_pPullDownListLabel->setToolTip(QString("其他功能"));
 
     // 标题栏
     this->m_pNormalTitleBar = new NormalTitleBar(parent);

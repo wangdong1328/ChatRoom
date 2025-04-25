@@ -12,6 +12,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
+include_directories(${PROJECT_SOURCE_DIR}/)
+
 # 添加chat下源文件
 include_directories(${PROJECT_SOURCE_DIR}/chat)
 FILE(GLOB_RECURSE CHAT_HEADER_FILES ${PROJECT_SOURCE_DIR}/chat/*.h)
@@ -33,6 +35,7 @@ FILE(GLOB_RECURSE FRAMELESS_HEADER_FILES ${PROJECT_SOURCE_DIR}/framelesswindow/*
 aux_source_directory(${PROJECT_SOURCE_DIR}/framelesswindow FRAMELESS_SOURCE_FILES)
 
 set(PROJECT_SOURCES
+        global.h
         main.cpp
         graphicmanager.h graphicmanager.cpp
         ${CHAT_HEADER_FILES} ${CHAT_SOURCE_FILES}
