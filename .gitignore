@@ -1,2 +1,3 @@
-/ChatClient/CMakeLists.txt.user
-/ChatClient/build
+/chat-client/CMakeLists.txt.user
+/chat-client/build
+/chat-server/build
