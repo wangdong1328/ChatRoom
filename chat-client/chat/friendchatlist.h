@@ -5,7 +5,7 @@
 #include <QWidget>
 #include <QLabel>
 
-class FriendChatList : public QWidget
+class FriendChatList final : public QWidget
 {
     Q_OBJECT
 public:
@@ -35,21 +35,21 @@ public:
      * @param index
      * @param stUserData
      */
-    void SetItemData(const int index, const SUserData& stUserData);
+    void SetItemData(int index, const SUserData &stUserData);
 
     /**
      * @brief GetItemData
      * @param index
      * @return
      */
-    SUserData GetItemData(const int index) const;
+    SUserData GetItemData(int index) const;
 
 signals:
     void ItemClickedSignal(const SUserData& stUserData);
 
     // QWidget interface
 protected:
-    virtual void paintEvent(QPaintEvent* event) override;
+    void paintEvent(QPaintEvent *event) override;
 
 private:
     // 消息标题
@@ -60,12 +60,11 @@ private:
     QListWidget* m_pChatListWidget { nullptr };
 };
 
-class ListWidgetItem : public QListWidgetItem
+class ListWidgetItem final : public QListWidgetItem
 {
 public:
     explicit ListWidgetItem(QWidget* parent = nullptr);
 
     // QListWidgetItem interface
-public:
-    virtual bool operator<(const QListWidgetItem& other) const override;
+    bool operator<(const QListWidgetItem &other) const override;
 };

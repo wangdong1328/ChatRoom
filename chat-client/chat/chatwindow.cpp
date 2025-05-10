@@ -42,12 +42,6 @@ void ChatTitle::paintEvent(QPaintEvent* event)
     painter.drawLine(QPoint(this->rect().bottomLeft()), QPoint(this->rect().bottomRight()));
     painter.restore();
 
-    painter.save();
-    painter.setPen(Qt::NoPen);
-    painter.setBrush(Qt::transparent);
-    painter.drawRoundedRect(this->rect(), 10, 10);
-    painter.restore();
-
     QWidget::paintEvent(event);
 }
 
@@ -60,7 +54,7 @@ ChatMessageEdit::ChatMessageEdit(QWidget* parent)
     this->setLayout(pMainVBoxLayout);
 
     QFont font;
-    font.setPixelSize(13);
+    font.setPixelSize(15);
     this->m_pMessageEdit = new QTextEdit(this);
     this->m_pMessageEdit->setFont(font);
     this->m_pMessageEdit->setFrameShape(QFrame::NoFrame);
@@ -265,7 +259,7 @@ void ChatMessageEdit::paintEvent(QPaintEvent* event)
     QWidget::paintEvent(event);
 }
 
-SendMessageButton::SendMessageButton(QWidget* parent)
+SendMessageButton::SendMessageButton(QWidget* parent) : QWidget(parent)
 {
     this->setFixedSize(60, 30);
     this->setCursor(Qt::PointingHandCursor);
@@ -325,6 +319,7 @@ ChatWindow::ChatWindow(SUserData& stUserData, QWidget* parent) : QWidget { paren
 
     connect(this->m_pMessageEdit, &ChatMessageEdit::SendMessageSignal, this, [&](SMessageInfo stMessageInfo) {
         m_stUserData.stMessageInfo = stMessageInfo;
+        m_stUserData.alignment = Qt::AlignRight;
         IncreaseMessageItem(m_stUserData);
     });
 
@@ -336,10 +331,6 @@ ChatWindow::ChatWindow(SUserData& stUserData, QWidget* parent) : QWidget { paren
 void ChatWindow::IncreaseMessageItem(const SUserData& stUserData)
 {
     SUserData stTempUserData = stUserData;
-    if (m_stUserData.strUserAccount == stUserData.strUserAccount)
-    {
-        stTempUserData.alignment = Qt::AlignRight;
-    }
 
     QListWidgetItem* item = new QListWidgetItem(this->m_pChatList);
     item->setFlags(item->flags() & ~Qt::ItemIsSelectable);
@@ -360,11 +351,5 @@ void ChatWindow::paintEvent(QPaintEvent* event)
     painter.setPen(QColor(0, 0, 0, 20));
     painter.setBrush(Qt::NoBrush);
     painter.drawLine(QPoint(this->rect().topLeft()), QPoint(this->rect().bottomLeft()));
-    painter.restore();
-
-    painter.save();
-    painter.setPen(Qt::NoPen);
-    painter.setBrush(Qt::transparent);
-    painter.drawRoundedRect(this->rect(), 15, 15);
     painter.restore();
 }

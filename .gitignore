@@ -1,3 +1,4 @@
 /chat-client/CMakeLists.txt.user
 /chat-client/build
 /chat-server/build
+/chat-client/.idea

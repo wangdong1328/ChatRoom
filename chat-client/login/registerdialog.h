@@ -21,15 +21,14 @@
 
 #include "baselogindialog.h"
 
-class RegisterDialog : public BaseLoginDialog
+class RegisterDialog final : public BaseLoginDialog
 {
     Q_OBJECT
 public:
     explicit RegisterDialog(QWidget* parent = nullptr);
 
     // QObject interface
-public:
-    virtual bool eventFilter(QObject* watched, QEvent* event) override;
+    bool eventFilter(QObject* watched, QEvent* event) override;
 
 private:
     void OnRegisterButtonClick();
@@ -39,5 +38,5 @@ signals:
 
 private:
     // 重复密码组件
-    LineEditComponent* m_pRePassworddLineEdit { nullptr };
+    LineEditComponent* m_pRePasswordLineEdit { nullptr };
 };

@@ -3,10 +3,10 @@
 
 RegisterDialog::RegisterDialog(QWidget* parent) : BaseLoginDialog { parent }
 {
-    m_pRePassworddLineEdit = new PasswordComponent(":/res/ico/MajesticonsLock.png", this);
+    m_pRePasswordLineEdit = new PasswordComponent(":/res/ico/MajesticonsLock.png", this);
 
     m_pContentVBoxLayout->insertSpacing(3, 10);
-    m_pContentVBoxLayout->insertWidget(4, m_pRePassworddLineEdit);
+    m_pContentVBoxLayout->insertWidget(4, m_pRePasswordLineEdit);
 
     m_pRegisterButton->setText("登录账户");
 
@@ -21,7 +21,8 @@ bool RegisterDialog::eventFilter(QObject* watched, QEvent* event)
         // 处理登录按钮
         return true;
     }
-    else if ((this->m_pRegisterButton == watched) && (QEvent::MouseButtonPress == event->type()))
+
+    if ((this->m_pRegisterButton == watched) && (QEvent::MouseButtonPress == event->type()))
     {
         // 处理注册按钮
         emit LoginClickSignal();

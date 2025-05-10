@@ -15,6 +15,12 @@ IconWithRedPoint::IconWithRedPoint(const QSize& size, const QPixmap& pixmap, QWi
               QSize(this->m_pIconLabel->size())));
 }
 
+void IconWithRedPoint::SetUnRead(bool bUnRead)
+{
+    m_bUnRead = bUnRead;
+    update();
+}
+
 void IconWithRedPoint::paintEvent(QPaintEvent* event)
 {
     QPainter painter(this);

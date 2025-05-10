@@ -13,8 +13,17 @@ public:
 
     // QWidget interface
 protected:
-    virtual void paintEvent(QPaintEvent* event) override;
-    virtual void showEvent(QShowEvent* event) override;
+    /**
+     * @brief : 绘制界面
+     * @param : event, 绘制事件
+     */
+    void paintEvent(QPaintEvent* event) override;
+
+    /**
+     * @brief : 显示界面
+     * @param : event, 显示事件
+     */
+    void showEvent(QShowEvent* event) override;
 
 private:
     void Init();

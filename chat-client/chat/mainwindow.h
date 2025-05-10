@@ -25,10 +25,11 @@
 #include "chatpage.h"
 #include "framelesswindow.h"
 #include "friendpage.h"
+#include "systemnotification.h"
 
 #include <QStackedLayout>
 
-class MainWindow : public FramelessWindow
+class MainWindow final : public FramelessWindow
 {
     Q_OBJECT
 
@@ -43,7 +44,9 @@ protected:
      *
      * @param event
      */
-    virtual void paintEvent(QPaintEvent* event) override;
+    void paintEvent(QPaintEvent* event) override;
+
+    void resizeEvent(QResizeEvent* event) override;
 
 private:
     void InitSignalSlot();
@@ -61,4 +64,6 @@ private:
     FriendPage* m_pFriendPage { nullptr };
     // 账户页面
     AccountPage* m_pAccountPage { nullptr };
+    // 系统通知栏
+    SystemNotification* m_pSystemNotification { nullptr };
 };

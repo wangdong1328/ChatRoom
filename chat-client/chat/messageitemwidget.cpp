@@ -6,15 +6,23 @@
 #include <QFontMetrics>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QScrollBar>
 
 Bubble::Bubble(const SUserData& stUserData, QWidget* parent)
 {
     this->setContextMenuPolicy(Qt::CustomContextMenu);
 
-    QPalette pale;
-    pale.setColor(QPalette::Text, Qt::black);
-    pale.setColor(QPalette::Window, Qt::white);
-    QFont font;
+    QFont font = this->font();
+
+    this->m_pMessageContent = new QLabel(this);
+    this->m_pMessageContent->setFont(font);
+    this->m_pMessageContent->setStyleSheet(" QLabel {"
+                                           " border: none;"
+                                           " background: transparent;"
+                                           " outline: none;"
+                                           " color: black;"
+                                           "}");
+    this->m_pMessageContent->adjustSize();
 
     switch (stUserData.stMessageInfo.eType)
     {
@@ -26,23 +34,7 @@ Bubble::Bubble(const SUserData& stUserData, QWidget* parent)
                 pMainLayout->setContentsMargins(0, 2, 2, 2);
                 this->setLayout(pMainLayout);
 
-                this->m_pMessageContent = new QLabel(this);
-                this->m_pMessageContent->setFont(font);
-                this->m_pMessageContent->setPalette(pale);
-                this->m_pMessageContent->setTextInteractionFlags(Qt::TextSelectableByMouse);
                 this->m_pMessageContent->setText(stUserData.stMessageInfo.strContent);
-                this->m_pMessageContent->adjustSize();
-
-                if ((m_pMessageContent->width() + 20) > 500)
-                {
-                    this->setFixedWidth(500);
-                    this->m_pMessageContent->setWordWrap(true);
-                }
-                else
-                {
-                    this->setFixedSize(m_pMessageContent->width() + 20, m_pMessageContent->height() + 10);
-                }
-
                 pMainLayout->addWidget(this->m_pMessageContent, 0, Qt::AlignCenter);
             }
             break;
@@ -89,12 +81,12 @@ Bubble::Bubble(const SUserData& stUserData, QWidget* parent)
 
                     // 文件名称
                     this->m_pFileName = new QLabel(info.strFileName, this);
-                    this->m_pFileName->setPalette(pale);
+                    // this->m_pFileName->setPalette(pale);
                     this->m_pFileName->adjustSize();
 
                     // 文件大小
                     this->m_pFileSize = new QLabel(QString::number(info.uiFileSize), this);
-                    this->m_pFileSize->setPalette(pale);
+                    // this->m_pFileSize->setPalette(pale);
                     this->m_pFileSize->adjustSize();
 
                     QHBoxLayout* pNameHBoxLayout = new QHBoxLayout();
@@ -109,7 +101,7 @@ Bubble::Bubble(const SUserData& stUserData, QWidget* parent)
 
                     pMainHBoxLayout->addWidget(this->m_pFileIcon);
                     pMainHBoxLayout->addLayout(pVBoxLayout);
-                    this->adjustSize();
+                    // this->adjustSize();
                 }
             }
             break;
@@ -255,13 +247,4 @@ MessageItemWidget::MessageItemWidget(const SUserData& stUserData, QWidget* paren
         pMainHBoxLayout->addLayout(pContentVBoxLayout);
     }
     this->adjustSize();
-}
-
-void Bubble::paintEvent(QPaintEvent* event)
-{
-    QPainter painter(this);
-    painter.setRenderHint(QPainter::Antialiasing);
-    painter.setPen(Qt::NoPen);
-    painter.setBrush(QColor(200, 200, 235));
-    painter.drawRoundedRect(this->rect(), 10.0f, 10.0f);
 }

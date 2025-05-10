@@ -2,7 +2,7 @@
 
 #include <QWidget>
 
-class AccountPage : public QWidget
+class AccountPage final : public QWidget
 {
     Q_OBJECT
 public:

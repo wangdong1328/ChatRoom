@@ -1,9 +1,10 @@
+
 #pragma once
 
 #include <QVBoxLayout>
 #include <QWidget>
 
-class ApplicationFeatureBar : public QWidget
+class ApplicationFeatureBar final : public QWidget
 {
     Q_OBJECT
 public:
@@ -19,10 +20,10 @@ public:
                          const QString& strButtonText);
 
 signals:
-    void ItemChangedSignal(const unsigned short usItemIndex);
+    void ItemChangedSignal(unsigned short usItemIndex);
 
 private slots:
-    void OnFeatureButtonClickedSlot(const unsigned short usItemIndex);
+    void OnFeatureButtonClickedSlot(unsigned short usItemIndex);
 
 private:
     // 垂直布局
@@ -56,9 +57,13 @@ public:
 
     // QWidget interface
 protected:
+    // 鼠标进入事件
     virtual void enterEvent(QEnterEvent* event) override;
+    // 鼠标离开事件
     virtual void leaveEvent(QEvent* event) override;
+    // 绘制事件
     virtual void paintEvent(QPaintEvent* event) override;
+    // 鼠标按下事件
     virtual void mousePressEvent(QMouseEvent* event) override;
 
 signals:

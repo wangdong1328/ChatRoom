@@ -16,6 +16,14 @@ struct SFileInfo
     EFileType eFileType;
     QString strContent;
     unsigned int uiFileSize;
+
+    SFileInfo()
+    {
+        strFileName = "";
+        eFileType = EFileType::NORMAL_FILE;
+        strContent = "";
+        uiFileSize = 0;
+    }
 };
 
 enum class EMessageType : unsigned short
@@ -28,6 +36,11 @@ struct SMessageInfo
 {
     EMessageType eType;
     QString strContent;
+    SMessageInfo()
+    {
+        eType = EMessageType::TEXT;
+        strContent = "";
+    }
 };
 
 struct SUserData
@@ -58,6 +71,5 @@ struct SUserData
         alignment = Qt::AlignLeft;
         bIsUnread = false;
         iUnReadMessageNums = 0;
-        stMessageInfo.eType = EMessageType::TEXT;
     }
 };

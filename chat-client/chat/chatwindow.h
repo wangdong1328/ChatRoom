@@ -8,7 +8,7 @@
 #include <QTextEdit>
 #include <QWidget>
 
-class ChatTitle : public QWidget
+class ChatTitle final : public QWidget
 {
 public:
     explicit ChatTitle(const QString& strUserName, const QPixmap& pixUserHead, QWidget* parent);
@@ -25,17 +25,17 @@ private:
     QLabel* m_pUserName { nullptr };
 };
 
-class SendMessageButton : public QWidget
+class SendMessageButton final : public QWidget
 {
 public:
-    SendMessageButton(QWidget* parent = nullptr);
+    explicit SendMessageButton(QWidget* parent = nullptr);
 
     // QWidget interface
 protected:
-    virtual void paintEvent(QPaintEvent* event) override;
+    void paintEvent(QPaintEvent* event) override;
 };
 
-class ChatMessageEdit : public QWidget
+class ChatMessageEdit final : public QWidget
 {
     Q_OBJECT
 public:
@@ -43,10 +43,10 @@ public:
 
     // QObject interface
 protected:
-    virtual bool eventFilter(QObject* watched, QEvent* event) override;
+    bool eventFilter(QObject* watched, QEvent* event) override;
 
     // QWidget interface
-    virtual void paintEvent(QPaintEvent* event) override;
+    void paintEvent(QPaintEvent* event) override;
 
 private:
     /**
@@ -78,7 +78,7 @@ private:
     QLabel* m_pClearButton { nullptr };
 };
 
-class ChatWindow : public QWidget
+class ChatWindow final : public QWidget
 {
     Q_OBJECT
 public:
@@ -100,7 +100,7 @@ public:
 
     // QWidget interface
 protected:
-    virtual void paintEvent(QPaintEvent* event) override;
+    void paintEvent(QPaintEvent* event) override;
 
 signals:
 

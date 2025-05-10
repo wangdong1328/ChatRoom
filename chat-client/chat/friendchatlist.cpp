@@ -22,7 +22,7 @@ FriendChatList::FriendChatList(QWidget* parent) : QWidget { parent }
     QHBoxLayout* pTitleLayout = new QHBoxLayout;
     pTitleLayout->setContentsMargins(9, 0, 9, 0);
 
-    this->m_pTitleLabel = new QLabel("Message", this);
+    this->m_pTitleLabel = new QLabel("", this);
     this->m_pTitleLabel->setFont(font);
     this->m_pTitleLabel->setPalette(pale);
 
@@ -115,7 +115,6 @@ void FriendChatList::SetItemData(const int index, const SUserData& stUserData)
 SUserData FriendChatList::GetItemData(const int index) const
 {
     QListWidgetItem* pItem = this->m_pChatListWidget->item(index);
-
     return pItem->data(Qt::UserRole).value<SUserData>();
 }
 
@@ -127,12 +126,6 @@ void FriendChatList::paintEvent(QPaintEvent* event)
     painter.setPen(QColor(0, 0, 0, 20));
     painter.setBrush(Qt::NoBrush);
     painter.drawLine(QPoint(this->rect().topLeft()), QPoint(this->rect().bottomLeft()));
-    painter.restore();
-
-    painter.save();
-    painter.setPen(Qt::NoPen);
-    painter.setBrush(Qt::transparent);
-    painter.drawRoundedRect(this->rect(), 15, 15);
     painter.restore();
 }
 

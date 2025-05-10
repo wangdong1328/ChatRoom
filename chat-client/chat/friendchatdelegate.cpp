@@ -11,12 +11,12 @@ void FriendChatDelegate::paint(QPainter* painter, const QStyleOptionViewItem& op
 {
     if (!index.isValid()) return;
 
-    SUserData stUserData = index.data(Qt::UserRole).value<SUserData>();
+    auto stUserData = index.data(Qt::UserRole).value<SUserData>();
 
     if (stUserData.pixUserHead.isNull() || stUserData.strUserName.isEmpty()) return;
 
-    QStyleOptionViewItem viewoption(option);
-    initStyleOption(&viewoption, index);
+    QStyleOptionViewItem view_item(option);
+    initStyleOption(&view_item, index);
 
     painter->setRenderHints(
         QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::SmoothPixmapTransform, true);
@@ -25,13 +25,13 @@ void FriendChatDelegate::paint(QPainter* painter, const QStyleOptionViewItem& op
     item_rect.adjust(2, 2, -2, -2);
 
     // 绘制头像
-    QRect userheadRect = QRect(item_rect.left() + 2, item_rect.center().y() - (item_rect.height() - 20) / 2,
+    auto rect = QRect(item_rect.left() + 2, item_rect.center().y() - (item_rect.height() - 20) / 2,
                                item_rect.height() - 20, item_rect.height() - 20);
 
     QLabel temp(stUserData.strUserName);
     temp.adjustSize();
-    QRect userNameRect =
-        QRect(userheadRect.right() + 7, userheadRect.top() - 3, temp.width() + 10, temp.height());
+    auto userNameRect =
+        QRect(rect.right() + 7, rect.top() - 3, temp.width() + 10, temp.height());
 
     temp.setText(stUserData.stMessageInfo.strContent);
     temp.adjustSize();
@@ -46,7 +46,7 @@ void FriendChatDelegate::paint(QPainter* painter, const QStyleOptionViewItem& op
         message = temp.text();
     }
 
-    QRect userMessageRect =
+    auto userMessageRect =
         QRect(userNameRect.left(), userNameRect.bottom(), temp.width() + 30, temp.height());
 
     painter->save();
@@ -74,8 +74,8 @@ void FriendChatDelegate::paint(QPainter* painter, const QStyleOptionViewItem& op
     painter->setPen(Qt::NoPen);
     painter->setBrush(Qt::NoBrush);
 
-    painter->drawPixmap(userheadRect,
-                        stUserData.pixUserHead.scaled(QSize(userheadRect.size()), Qt::IgnoreAspectRatio,
+    painter->drawPixmap(rect,
+                        stUserData.pixUserHead.scaled(QSize(rect.size()), Qt::IgnoreAspectRatio,
                                                       Qt::SmoothTransformation));
     painter->restore();
 

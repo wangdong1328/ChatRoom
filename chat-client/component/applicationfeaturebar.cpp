@@ -24,7 +24,7 @@ ApplicationFeatureBar::ApplicationFeatureBar(QWidget* parent) : QWidget { parent
 void ApplicationFeatureBar::IncreaseFeature(const QString& strUnSelectIcon, const QString& strSelectIcon,
                                             const QString& strButtonText)
 {
-    FeatureButton* pFeatureButton =
+    auto* pFeatureButton =
         new FeatureButton(strUnSelectIcon, strSelectIcon, strButtonText, this->m_usItemIndex, this);
 
     this->m_pMainVBoxLayout->addWidget(pFeatureButton, 0, Qt::AlignCenter);
@@ -39,10 +39,9 @@ void ApplicationFeatureBar::OnFeatureButtonClickedSlot(const unsigned short usIt
 
     for (int iIndex = 0; iIndex < this->m_pMainVBoxLayout->count(); iIndex++)
     {
-        QLayoutItem* pItem = m_pMainVBoxLayout->itemAt(iIndex);
+        const QLayoutItem* pItem = m_pMainVBoxLayout->itemAt(iIndex);
 
-        FeatureButton* pFeatureButton = static_cast<FeatureButton*>(pItem->widget());
-        if (pFeatureButton)
+        if (auto* pFeatureButton = dynamic_cast<FeatureButton*>(pItem->widget()))
         {
             if (pFeatureButton->GetCurrentIndex() != usItemIndex)
             {

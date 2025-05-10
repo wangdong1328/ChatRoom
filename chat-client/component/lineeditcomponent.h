@@ -39,7 +39,7 @@ public:
 
     // QWidget interface
 protected:
-    virtual void paintEvent(QPaintEvent* event) override;
+    void paintEvent(QPaintEvent* event) override;
 
 signals:
 

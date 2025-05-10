@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget* parent) : FramelessWindow(parent)
     this->setLayout(pMainLayout);
 
     this->setAttribute(Qt::WA_TranslucentBackground);   // 设置窗口背景透明
-    this->setWindowFlags(Qt::FramelessWindowHint);
+    this->setWindowFlags(Qt::FramelessWindowHint);      // 设置无边框
 
     this->setMinimumSize(1050, 750);
 
@@ -37,6 +37,8 @@ MainWindow::MainWindow(QWidget* parent) : FramelessWindow(parent)
     pMainLayout->addWidget(this->m_pApplicationTitleBar);
     pMainLayout->addLayout(pContentHBoxLayout);
 
+    m_pSystemNotification = new SystemNotification(this);
+
     InitSignalSlot();
 }
 
@@ -57,4 +59,29 @@ void MainWindow::InitSignalSlot()
 {
     connect(this->m_pApplicationFeatureBar, &ApplicationFeatureBar::ItemChangedSignal, this->m_pStackedLayout,
             &QStackedLayout::setCurrentIndex);
+
+    // 标题栏设置
+    connect(this->m_pApplicationTitleBar, &ApplicationTitleBar::ShowSearchSignal, this, [&]() {
+
+    });
+
+    connect(this->m_pApplicationTitleBar, &ApplicationTitleBar::ShowPullDownListSignal, this, [&]() {
+
+    });
+
+    connect(this->m_pApplicationTitleBar, &ApplicationTitleBar::ShowSystemNotificationSignal, this, [&]() {
+        if (m_pSystemNotification)
+        {
+            // m_pSystemNotification->setWindowModality(Qt::WindowModal);
+            m_pSystemNotification->show();
+        }
+    });
+}
+
+void MainWindow::resizeEvent(QResizeEvent* event)
+{
+    this->m_pSystemNotification->setGeometry(
+        QRect(QPoint(this->rect().right() + 5,
+                     this->rect().center().y() - (this->m_pSystemNotification->height() / 2)),
+              QSize(this->m_pSystemNotification->size())));
 }

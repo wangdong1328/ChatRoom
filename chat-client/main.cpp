@@ -5,8 +5,8 @@
 
 void SetFont(QApplication& app)
 {
-    int iFontID = QFontDatabase::addApplicationFont(":/res/font/flache.ttf");
-    QString family = QFontDatabase::applicationFontFamilies(iFontID).at(0);
+    const int iFontID = QFontDatabase::addApplicationFont(":/res/font/flache.ttf");
+    const QString family = QFontDatabase::applicationFontFamilies(iFontID).at(0);
 
     QFont font;
     font.setHintingPreference(QFont::PreferNoHinting);
@@ -19,6 +19,7 @@ int main(int argc, char* argv[])
 {
     QApplication a(argc, argv);
 
+    // 设置窗口字体
     SetFont(a);
 
     GraphicManager::GetInstance().Init();

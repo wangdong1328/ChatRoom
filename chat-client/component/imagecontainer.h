@@ -2,7 +2,7 @@
 
 #include <QWidget>
 
-class ImageContainer : public QWidget
+class ImageContainer final : public QWidget
 {
     Q_OBJECT
 public:

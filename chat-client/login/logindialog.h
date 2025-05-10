@@ -21,7 +21,7 @@
 
 #include "baselogindialog.h"
 
-class LoginDialog : public BaseLoginDialog
+class LoginDialog final : public BaseLoginDialog
 {
     Q_OBJECT
 
@@ -29,13 +29,12 @@ public:
     explicit LoginDialog(QWidget* parent = nullptr);
 
     // QObject interface
-public:
-    virtual bool eventFilter(QObject* watched, QEvent* event) override;
+    bool eventFilter(QObject* watched, QEvent* event) override;
 
 private:
     void OnLoginButtonClick();
 
 signals:
     // 注册按钮点击
-    void RigisterClickSignal();
+    void RegisterClickSignal();
 };

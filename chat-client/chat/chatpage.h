@@ -7,7 +7,7 @@
 #include <QWidget>
 #include <QMap>
 
-class ChatPage : public QWidget
+class ChatPage final : public QWidget
 {
     Q_OBJECT
 public:
@@ -18,10 +18,6 @@ public:
      * @param stUserData
      */
     void CreateChatWindow(SUserData& stUserData);
-
-    // QWidget interface
-protected:
-    virtual void paintEvent(QPaintEvent* event) override;
 
 private:
     void InitSignalSlot();

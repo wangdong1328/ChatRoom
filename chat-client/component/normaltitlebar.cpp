@@ -38,19 +38,19 @@ NormalTitleBar::NormalTitleBar(QWidget* parent, bool bIsDialog /*= false*/) :
         this->m_pMinWindowLabel->setToolTip("最小化");
 
         // 最大按钮设置
-        this->m_pMaxWinodowLabel = new QLabel(this);
-        this->m_pMaxWinodowLabel->setCursor(Qt::PointingHandCursor);
-        this->m_pMaxWinodowLabel->setFixedSize(23, 23);
-        this->m_pMaxWinodowLabel->setScaledContents(true);
+        this->m_pMaxWindowLabel = new QLabel(this);
+        this->m_pMaxWindowLabel->setCursor(Qt::PointingHandCursor);
+        this->m_pMaxWindowLabel->setFixedSize(23, 23);
+        this->m_pMaxWindowLabel->setScaledContents(true);
         pixmap.load(":/res/ico/FluentMaximize16Regular.png");
-        this->m_pMaxWinodowLabel->setPixmap(pixmap);
-        this->m_pMaxWinodowLabel->installEventFilter(this);
-        this->m_pMaxWinodowLabel->setToolTip("最大化");
+        this->m_pMaxWindowLabel->setPixmap(pixmap);
+        this->m_pMaxWindowLabel->installEventFilter(this);
+        this->m_pMaxWindowLabel->setToolTip("最大化");
 
         pMainLayout->addWidget(m_pMinWindowLabel);
         pMainLayout->addSpacing(3);
 
-        pMainLayout->addWidget(m_pMaxWinodowLabel);
+        pMainLayout->addWidget(m_pMaxWindowLabel);
         pMainLayout->addSpacing(3);
     }
 
@@ -70,7 +70,7 @@ bool NormalTitleBar::eventFilter(QObject* watched, QEvent* event)
                 m_pParentWidget->showMinimized();
             }
         }
-        else if (this->m_pMaxWinodowLabel == watched)
+        else if (this->m_pMaxWindowLabel == watched)
         {
             if (!m_pParentWidget->isMaximized())
             {
@@ -104,12 +104,12 @@ bool NormalTitleBar::eventFilter(QObject* watched, QEvent* event)
             palette.setColor(this->m_pMinWindowLabel->backgroundRole(), Qt::gray);
             this->m_pMinWindowLabel->setPalette(palette);
         }
-        else if (this->m_pMaxWinodowLabel == watched)
+        else if (this->m_pMaxWindowLabel == watched)
         {
-            this->m_pMaxWinodowLabel->setAutoFillBackground(true);
-            QPalette palette = this->m_pMaxWinodowLabel->palette();
-            palette.setColor(this->m_pMaxWinodowLabel->backgroundRole(), Qt::gray);
-            this->m_pMaxWinodowLabel->setPalette(palette);
+            this->m_pMaxWindowLabel->setAutoFillBackground(true);
+            QPalette palette = this->m_pMaxWindowLabel->palette();
+            palette.setColor(this->m_pMaxWindowLabel->backgroundRole(), Qt::gray);
+            this->m_pMaxWindowLabel->setPalette(palette);
         }
         else if (this->m_pCloseWindowLabel == watched)
         {
@@ -129,12 +129,12 @@ bool NormalTitleBar::eventFilter(QObject* watched, QEvent* event)
             this->m_pMinWindowLabel->setPalette(palette);
             this->m_pMinWindowLabel->setAutoFillBackground(false);
         }
-        else if (this->m_pMaxWinodowLabel == watched)
+        else if (this->m_pMaxWindowLabel == watched)
         {
-            QPalette palette = this->m_pMaxWinodowLabel->palette();
-            palette.setColor(this->m_pMaxWinodowLabel->backgroundRole(), Qt::white);
-            this->m_pMaxWinodowLabel->setPalette(palette);
-            this->m_pMaxWinodowLabel->setAutoFillBackground(false);
+            QPalette palette = this->m_pMaxWindowLabel->palette();
+            palette.setColor(this->m_pMaxWindowLabel->backgroundRole(), Qt::white);
+            this->m_pMaxWindowLabel->setPalette(palette);
+            this->m_pMaxWindowLabel->setAutoFillBackground(false);
         }
         else if (this->m_pCloseWindowLabel == watched)
         {

@@ -44,6 +44,7 @@ ApplicationTitleBar::ApplicationTitleBar(QWidget* parent) : QWidget { parent }
     this->m_pIconWithRedPoint = new IconWithRedPoint(QSize(28, 28), pixmap, this);
     this->m_pIconWithRedPoint->SetUnRead(true);
     this->m_pIconWithRedPoint->setToolTip(QString("通知"));
+    this->m_pIconWithRedPoint->installEventFilter(this);
 
     // 下拉框
     this->m_pPullDownListLabel = new QLabel(this);
@@ -52,8 +53,8 @@ ApplicationTitleBar::ApplicationTitleBar(QWidget* parent) : QWidget { parent }
     this->m_pPullDownListLabel->setScaledContents(true);
     pixmap.load(":/res/ico/IconamoonArrowDown2Bold.png");
     this->m_pPullDownListLabel->setPixmap(pixmap);
-    this->m_pPullDownListLabel->installEventFilter(this);
     this->m_pPullDownListLabel->setToolTip(QString("其他功能"));
+    this->m_pPullDownListLabel->installEventFilter(this);
 
     // 标题栏
     this->m_pNormalTitleBar = new NormalTitleBar(parent);
@@ -71,4 +72,30 @@ ApplicationTitleBar::ApplicationTitleBar(QWidget* parent) : QWidget { parent }
     pMainLayout->addWidget(m_pPullDownListLabel);
     pMainLayout->addSpacing(20);
     pMainLayout->addWidget(m_pNormalTitleBar);
+}
+
+bool ApplicationTitleBar::eventFilter(QObject* watched, QEvent* event)
+{
+    if (QEvent::MouseButtonPress == event->type())
+    {
+        if (this->m_pSearchLabel == watched)
+        {
+            emit ShowSearchSignal();
+            return true;
+        }
+
+        if (this->m_pIconWithRedPoint == watched)
+        {
+            emit ShowSystemNotificationSignal();
+            return true;
+        }
+
+        if (this->m_pPullDownListLabel == watched)
+        {
+            emit ShowPullDownListSignal();
+            return true;
+        }
+    }
+
+    return QWidget::eventFilter(watched, event);
 }

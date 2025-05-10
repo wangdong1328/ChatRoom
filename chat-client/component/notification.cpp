@@ -40,9 +40,8 @@ void Notification::showEvent(QShowEvent* event)
     QWidget::showEvent(event);
 
     // 设置动画的起始和结束位置
-    QWidget* pParentWidget = qobject_cast<QWidget*>(this->parent());
 
-    if (pParentWidget)
+    if (const QWidget* pParentWidget = qobject_cast<QWidget*>(this->parent()))
     {
         this->m_pPropertyAnimation->setDirection(QPropertyAnimation::Forward);
         this->m_pPropertyAnimation->setStartValue(

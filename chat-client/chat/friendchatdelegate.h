@@ -2,7 +2,7 @@
 
 #include <QStyledItemDelegate>
 
-class FriendChatDelegate : public QStyledItemDelegate
+class FriendChatDelegate final : public QStyledItemDelegate
 {
     Q_OBJECT
 public:
@@ -12,8 +12,8 @@ signals:
 
     // QAbstractItemDelegate interface
 public:
-    virtual void paint(QPainter* painter, const QStyleOptionViewItem& option,
+    void paint(QPainter* painter, const QStyleOptionViewItem& option,
                        const QModelIndex& index) const override;
 
-    virtual QSize sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const override;
+    QSize sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const override;
 };

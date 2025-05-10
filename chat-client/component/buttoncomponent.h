@@ -36,7 +36,7 @@ public:
 
     // QWidget interface
 protected:
-    virtual void paintEvent(QPaintEvent* event) override;
+    void paintEvent(QPaintEvent* event) override;
 
 private:
     QLabel* m_pButtonText { nullptr };

@@ -23,15 +23,14 @@
 #include <QLabel>
 #include <QEvent>
 
-class NormalTitleBar : public QWidget
+class NormalTitleBar final : public QWidget
 {
     Q_OBJECT
 public:
     explicit NormalTitleBar(QWidget* parent = nullptr, bool bIsDialog = false);
 
     // QObject interface
-public:
-    virtual bool eventFilter(QObject* watched, QEvent* event) override;
+    bool eventFilter(QObject* watched, QEvent* event) override;
 
 private:
     // 关闭按钮
@@ -39,7 +38,7 @@ private:
     // 最小按钮
     QLabel* m_pMinWindowLabel { nullptr };
     // 最大按钮
-    QLabel* m_pMaxWinodowLabel { nullptr };
+    QLabel* m_pMaxWindowLabel { nullptr };
     // 父窗口
     QWidget* m_pParentWidget { nullptr };
     // 是否为对话窗

@@ -17,7 +17,7 @@ BaseLoginDialog::BaseLoginDialog(QWidget* parent) : FramelessWindowForDialog(par
     this->setTitleBar(m_pNormalTitleBar);
 
     // 用户图像
-    QLabel* pUserHeadLabel = new QLabel(this);
+    auto* pUserHeadLabel = new QLabel(this);
     pUserHeadLabel->setFixedSize(80, 80);
     pUserHeadLabel->setScaledContents(true);
 

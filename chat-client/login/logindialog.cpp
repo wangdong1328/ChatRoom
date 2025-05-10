@@ -18,7 +18,7 @@ bool LoginDialog::eventFilter(QObject* watched, QEvent* event)
     else if ((this->m_pRegisterButton == watched) && (QEvent::MouseButtonPress == event->type()))
     {
         // 处理注册按钮
-        emit RigisterClickSignal();
+        emit RegisterClickSignal();
         return true;
     }
 

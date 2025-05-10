@@ -19,7 +19,8 @@ void GraphicManager::Init()
 
 void GraphicManager::InitSignalSlot()
 {
-    connect(m_pLoginDialog, &LoginDialog::RigisterClickSignal, this, [&]() {
+    connect(m_pLoginDialog, &LoginDialog::RegisterClickSignal, this, [&]()
+    {
         m_pLoginDialog->OnHideSlot();
         m_pRegisterDialog->OnShowSlot();
     });

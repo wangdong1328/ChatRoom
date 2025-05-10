@@ -4,6 +4,7 @@
 #include "normaltitlebar.h"
 #include <QWidget>
 #include <QLabel>
+#include <QEvent>
 
 class ApplicationTitleBar : public QWidget
 {
@@ -12,6 +13,12 @@ public:
     explicit ApplicationTitleBar(QWidget* parent = nullptr);
 
 signals:
+    // 显示系统通知信号
+    void ShowSystemNotificationSignal();
+    // 显示下拉列表信号
+    void ShowPullDownListSignal();
+    // 显示搜索信号
+    void ShowSearchSignal();
 
 private:
     // 窗口图标
@@ -27,4 +34,8 @@ private:
 
     // 最小/最大和关闭按钮
     NormalTitleBar* m_pNormalTitleBar { nullptr };
+
+    // QObject interface
+public:
+    virtual bool eventFilter(QObject* watched, QEvent* event) override;
 };

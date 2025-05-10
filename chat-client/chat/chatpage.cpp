@@ -76,15 +76,6 @@ void ChatPage::CreateChatWindow(SUserData& stUserData)
     }
 }
 
-void ChatPage::paintEvent(QPaintEvent* event)
-{
-    QPainter painter(this);
-    painter.setRenderHint(QPainter::Antialiasing);
-    painter.setPen(Qt::NoPen);
-    painter.setBrush(Qt::transparent);
-    painter.drawRoundedRect(this->rect(), 15, 15);
-}
-
 void ChatPage::InitSignalSlot()
 {
     connect(this->m_pFriendChatList, &FriendChatList::ItemClickedSignal, this,

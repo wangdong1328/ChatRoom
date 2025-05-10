@@ -20,17 +20,15 @@
 #pragma once
 
 #include "lineeditcomponent.h"
-
 #include <QEvent>
 
-class PasswordComponent : public LineEditComponent
+class PasswordComponent final : public LineEditComponent
 {
 public:
     explicit PasswordComponent(const QString& strIconPath, QWidget* parent = nullptr);
 
     // QObject interface
-public:
-    virtual bool eventFilter(QObject* watched, QEvent* event) override;
+    bool eventFilter(QObject* watched, QEvent* event) override;
 
 private:
     // LineEdit右侧图标

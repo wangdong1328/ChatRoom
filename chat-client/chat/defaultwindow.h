@@ -3,7 +3,7 @@
 #include <QLabel>
 #include <QWidget>
 
-class DefaultWindow : public QWidget
+class DefaultWindow final : public QWidget
 {
     Q_OBJECT
 public:
@@ -13,8 +13,4 @@ signals:
 
 private:
     QLabel* m_pDefaultIcon { nullptr };
-
-    // QWidget interface
-protected:
-    virtual void paintEvent(QPaintEvent* event) override;
 };

@@ -18,12 +18,11 @@
  *
  */
 #pragma once
-#include <QObject>
 #include "logindialog.h"
 #include "mainwindow.h"
 #include "registerdialog.h"
 
-class GraphicManager : public QObject
+class GraphicManager final : public QObject
 {
     Q_OBJECT
 public:
